@@ -8,6 +8,8 @@
 
 	<properties>
 		<querydsl.version>3.7.4</querydsl.version>
+		<maven.compiler.source>1.8</maven.compiler.source>
+		<maven.compiler.target>1.8</maven.compiler.target>
 	</properties>
 
 	<dependencies>

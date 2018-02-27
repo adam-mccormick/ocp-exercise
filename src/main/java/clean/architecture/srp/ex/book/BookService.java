@@ -1,9 +1,11 @@
 package clean.architecture.srp.ex.book;
 
+import java.util.Map;
+
 /**
  * This service is the facade over the persistence mechanism and the rendering
- * components for {@link Book} instances. The methods {@link #printHtml(Book)},
- * {@link #printXml(Book)} and {@link #save(Book)} have been brought out of the
+ * components for {@link Book} instances. The methods {@code printHtml(Book)},
+ * {@code printXml(Book)} and {@link #save(Book)} have been brought out of the
  * {@link Book} class and into this facade.
  * <p>
  * This facade relies on implementations of {@link BookRepository} and {@link BookRenderer}
@@ -29,21 +31,15 @@ package clean.architecture.srp.ex.book;
 public class BookService {
     
     private final BookRepository repository;
-    private final BookRenderer xml;
-    private final BookRenderer html;
+    private final Map<String, BookRenderer> renders;
     
-    public BookService(final BookRepository repository, final BookRenderer xml, final BookRenderer html){
+    public BookService(final BookRepository repository, final Map<String, BookRenderer> renders){
         this.repository = repository;
-        this.xml = xml;
-        this.html = html;
+        this.renders = renders;
     }
     
-    public String printXml(final Book book){
-        return this.xml.render(book);
-    }
-    
-    public String printHtml(final Book book){
-        return this.html.render(book);
+    public String print(final Book book, final String mime){
+        return this.renders.get(mime).render(book);
     }
     
     public Book save(final Book book){
