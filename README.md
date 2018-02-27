@@ -1,6 +1,5 @@
-# srp-exercise
+# Open Closed Principal Exercise
 
-Given the following book class:
-
-1) Identify the actors
-2) Refactor the class to best meet the "Single Responsibility Principle"
+The existing `BookService` requires more ways of rendering a `Book`. The exercise
+is to change the `BookService` and any other code to allow new ways of rendering a
+book without direct modifications to exiting code.
